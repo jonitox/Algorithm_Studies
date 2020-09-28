@@ -1,2 +1,2 @@
-# LOL
-game
+# G
+g
