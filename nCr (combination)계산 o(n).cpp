@@ -25,9 +25,9 @@ typedef vector<pii> vpii;
 #define MAXN 300000
 int n,k;
 ll ans = 0;
-ll fac[MAXN], facInv[MAXN]; // factorial°ú factorialÀÇ ¿ª¿ø(¿ª¼ö) °è»ê.
+ll fac[MAXN], facInv[MAXN]; // factorialï¿½ï¿½ factorialï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½.
 
-// nCk(MOD mod) ±¸ÇÏ±â o(n):ÀüÃ³¸®, o(1):Äõ¸® 
+// nCk(MOD mod) ï¿½ï¿½ï¿½Ï±ï¿½ o(n):ï¿½ï¿½Ã³ï¿½ï¿½, o(1):ï¿½ï¿½ï¿½ï¿½ 
 ll mpow(ll x, ll m) {
 	if (!m) return 1;
 	ll tmp = mpow(x, m / 2);
@@ -41,16 +41,16 @@ ll mpow(ll x, ll m) {
 void solve() {
 	cin >> n>>k;
 
-	// ÀüÃ³¸®
+	// ï¿½ï¿½Ã³ï¿½ï¿½
 	fac[0] = 1;
 	for (int i = 1; i <= n; ++i)
 		fac[i] = (fac[i - 1] * i) % mod;
-	facInv[n] = mpow(fac[n], mod - 2); // mod°¡ ¼Ò¼öÀÎ°æ¿ì, 1/a == a^(mod-2) (MOD mod)
+	facInv[n] = mpow(fac[n], mod - 2); // modï¿½ï¿½ ï¿½Ò¼ï¿½ï¿½Î°ï¿½ï¿½, 1/a == a^(mod-2) (MOD mod)
 	for (int i = n-1;i >= 0;i--) 
 		facInv[i] = (facInv[i + 1] * (i + 1)) % mod;
 
 	
-	cout << (((fac[n] * facInv(k))%mod) *facInv(n - k))%mod;
+	cout << (((fac[n] * facInv[k])%mod) *facInv[n - k])%mod;
 }
 
 int main() {

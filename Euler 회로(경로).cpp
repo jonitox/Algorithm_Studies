@@ -18,53 +18,54 @@ using namespace std;
 vector<vector<int>> adj;
 vector<int> indegree, outdegree;
 
-//¹æÇâ ±×·¡ÇÁ¿¡ ´ëÇÑ euler ¼­Å¶(°æ·Î) Ã£´Â ¾Ë°í¸®Áò // ¹«ÇâÀÏ ¶§´Â 
 
-// ±×·¡ÇÁ¿¡ euler°¡ Á¸ÀçÇÏ´ÂÁö check
+// euler ê²½ë¡œ/íšŒë¡œ ì¡´ì¬ì—¬ë¶€ í™•ì¸. (ë°©í–¥ê·¸ë˜í”„ì¸ê²½ìš°)
+// ë¬´í–¥ì¼ë•ŒëŠ” ì¡°ê±´: í™€ìˆ˜ì ì´ 2ê°œ (ì˜¤ì¼ëŸ¬ ê²½ë¡œ) í˜¹ì€ ì „ë¶€ ì§ìˆ˜ì (ì˜¤ì¼ëŸ¬ íšŒë¡œ)
 bool check_euler() {
-	// out: outdegree°¡ 1¸¸Å­ ´õ ¸¹Àº Á¡ÀÇ °³¼ö
-	// in: indegree°¡ 1¸¸Å­ ´õ ¸¹Àº Á¡ÀÇ °³¼ö
+	// outdegree: ë‚˜ê°€ëŠ” ê°„ì„ ìˆ˜
+	// indegree: ë“¤ì–´ì˜¤ëŠ” ê°„ì„ ìˆ˜
 	int in = 0, out = 0;
 	for (int i = 0; i < 26; i++) {
 		int delta = outdegree[i] - indegree[i];
-		if (delta > 1 || delta < -1) // Á¸Àç xÀÎ °æ¿ì
+		if (delta > 1 || delta < -1) // ë¶ˆê°€ëŠ¥
 			return false;
 		if (delta == 1)	out++;
 		if (delta == -1)	 in++;
 	}
-	return (in == 1 && out == 1) || (in == 0 && out == 0); // (euler °æ·Î °¡´É) || (euler ¼­Å¶ °¡´É)
+	return (in == 1 && out == 1) || (in == 0 && out == 0); // 
 }
 
-// dfs·Î ¿ÀÀÏ·¯ ¼­Å¶(°æ·Î) Ã£±â. // circuit¿¡ ¿ª¼øÀ¸·Î ÀúÀåµÈ´Ù.
+// dfsë¡œ ì˜¤ì¼ëŸ¬ê²½ë¡œ ì°¾ê¸°. ì´ë™ê°€ëŠ¥í•œ ê°„ì„ ì„ ì°¾ì„ë•Œë§ˆë‹¤ ê°„ì„ ì„ ì§€ìš°ë©° ì´ë™.
+// ë°©ë¬¸ ì¢…ë£Œì‹œ ì˜¤ì¼ëŸ¬ ê²½ë¡œì— í•´ë‹¹ì •ì ì„ ì¶”ê°€í•˜ë©´ ì™„ì„±.
 void get_euler(int here, vector<int>& circuit) {
 	for (int there = 0; there < 26; there++) {
-		while (adj[here][there] > 0) {		// ´ÙÁß±×·¡ÇÁ °í·Á // À²·¯ ¼­Å¶À» ÇÏ³ª Ã£¾Æ¼­ circuit¿¡ Ãß°¡ÇÑ´Ù.
-			adj[here][there]--;				// °£¼±À» Áö¿ì°í
-			get_euler(there, circuit);		// µû¶ó°£´Ù.
+		while (adj[here][there] > 0) {		
+			adj[here][there]--;				
+			get_euler(there, circuit);		
 		}
 	}
 	circuit.push_back(here);
 }
 
-// euler ¼­Å¶or°æ·Î°¡ Á¸ÀçÇÒ¶§ ´ä¾È Ã£¾Æ¼­ ¹İÈ¯.
+
+// ì˜¤ì¼ëŸ¬ ê²½ë¡œoríšŒë¡œ ì°¾ëŠ” í•¨ìˆ˜ // check_eulerê°€ trueì¸ ê²½ìš°.
 vector<int> get_circle_or_trail() {
 	vector<int> circuit;
 
-	// Æ®·¹ÀÏ·Î Á¸ÀçÇÏ´Â°æ¿ì
+	// íšŒë¡œ ì°¾ê¸°
 	for (int i = 0; i < 26; i++)
-		if (outdegree[i] - indegree[i] == 1) { // ½ÃÀÛÁ¡Àº outdegree = indegree+1ÀÎ Á¡À¸·Î °íÁ¤.
+		if (outdegree[i] - indegree[i] == 1) {
 			get_euler(i, circuit);
 			return circuit;
 		}
 
-	// ¼­Å¶ÀÎ °æ¿ì ³ª°¡´Â ¼± ÀÖ´Â ¾Æ¹« Á¡¿¡¼­ ½ÃÀÛ
+	// ê²½ë¡œ ì°¾ê¸° // ë‚˜ê°€ëŠ” ê°„ì„ ì´ ìˆëŠ” ì•„ë¬´ê³³ì—ì„œë‚˜ dfsí•˜ë©´ë¨.
 	for (int i = 0; i < 26; i++)
 		if (outdegree[i]) {
 			get_euler(i, circuit);
 			return circuit;
 		}
 
-	// À§ ½ÇÆĞ½Ã ºó º¤ÅÍ ¹İÈ¯. °£¼± ¾ø´Â °æ¿ì. ÀÌ ¹®Á¦¿¡¼± Çü½Ä»ó.
 	return circuit;
 }
 
@@ -73,8 +74,7 @@ vector<int> get_circle_or_trail() {
 bool solve() {
 	if (!check_euler) return false;
 	
-	//Á¸ÀçÇÑ´Ù¸é,
-	vector<int> circuit = 
+	vector<int> circuit = get_circle_or_trail();
 }
 
 int main() {
