@@ -23,8 +23,8 @@ typedef vector<vector<int>> vvi;
 typedef pair<int, int> pii;
 typedef vector<pii> vpii;
 
-// 네트워크 플로우
-// 포드풀커슨
+// 네트워크 플로우 // min(O(E*F),O(V*E^2))
+// 포드풀커슨 or 에드몬드 카프
 
 vi adj[60];
 int cap[60][60], flow[60][60];
