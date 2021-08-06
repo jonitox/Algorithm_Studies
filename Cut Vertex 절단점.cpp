@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -34,25 +33,25 @@ void make_graph() {
 
 
 //find CutVertex
-// here °¡ CutVertexÀÌ·Á¸é hereÀÇ childÀÇ subtree¿¡¼­ °¥ ¼ö ÀÖ´Â ÃÖ¼Ò ¹ß°ß ¼ø¼­°¡ here ÀÌ»óÀÎ subtree°¡ Á¸ÀçÇÑ´Ù.
-// here°¡ rootÀÏ¶§ CutVertexÀÌ·Á¸é child ¼ö°¡ 2 ÀÌ»óÀÌ´Ù.
+// here ï¿½ï¿½ CutVertexï¿½Ì·ï¿½ï¿½ï¿½ hereï¿½ï¿½ childï¿½ï¿½ subtreeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ö¼ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ here ï¿½Ì»ï¿½ï¿½ï¿½ subtreeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+// hereï¿½ï¿½ rootï¿½Ï¶ï¿½ CutVertexï¿½Ì·ï¿½ï¿½ï¿½ child ï¿½ï¿½ï¿½ï¿½ 2 ï¿½Ì»ï¿½ï¿½Ì´ï¿½.
 int findCutVertex(int here, bool isroot) {
 	discovered[here] = counter++;
-	int ret = discovered[here];			// hereÀº ¹«Á¶°Ç ¹ß°ß°¡´É.
+	int ret = discovered[here];			// hereï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ß°ï¿½ï¿½ï¿½.
 	int children = 0;
 	for (int i = 0; i < adj[here].size(); i++) {
 		int there = adj[here][i];
-		if (discovered[there] == -1) { // there°¡ hereÀÇ ÀÚ¼Õ ³ëµåÀÎ °æ¿ì
+		if (discovered[there] == -1) { // thereï¿½ï¿½ hereï¿½ï¿½ ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 			children++;
 			int subtree = findCutVertex(there, false);
 			ret = min(ret, subtree);
-			if (!isroot && subtree >= discovered[here]) // thereÀÇ subtree¿¡¼­ °¥¼ö ÀÖ´Â ÃÖ¼Ò¹ß°ß¼ø¼­°¡ hereÀÌ»óÀÏ¶§  
+			if (!isroot && subtree >= discovered[here]) // thereï¿½ï¿½ subtreeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ö¼Ò¹ß°ß¼ï¿½ï¿½ï¿½ï¿½ï¿½ hereï¿½Ì»ï¿½ï¿½Ï¶ï¿½  
 				isCutVertex[here] = true;
 		}
-		else // here->thereÀÌ backword EdgeÀÏ¶§
+		else // here->thereï¿½ï¿½ backword Edgeï¿½Ï¶ï¿½
 			ret = min(ret, discovered[there]);
 	}
-	if (isroot) isCutVertex[here] = (children >= 2); // root°¡ cutVertexÀÎ °æ¿ì´Â ÀÚ¼Õ ³ëµå°¡ 2°³ ÀÌ»óÀÎ °æ¿ì.
+	if (isroot) isCutVertex[here] = (children >= 2); // rootï¿½ï¿½ cutVertexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¼ï¿½ ï¿½ï¿½å°¡ 2ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.
 	return ret;
 }
 
@@ -71,78 +70,4 @@ int main() {
 	for (int i = 0; i < isCutVertex.size(); i++)
 		cout << isCutVertex[i];
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <list>
-#include <vector>
-#include <map>
-#include <set>
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-
-
-#define INF 2000000000
-using namespace std;
-
-vector<int> discovered(8, -1);
-vector<bool> isCutVertex(8, false);
-vector<vector<int>> adj;
-int counter = 0;
-
-void make_graph() {
-	adj.push_back({ 1 });
-	adj.push_back({ 0, 2, 3 });
-	adj.push_back({ 1,3,5 });
-	adj.push_back({ 1,2,4,5 });
-	adj.push_back({ 3 });
-	adj.push_back({ 2,3,6,7 });
-	adj.push_back({ 5 });
-	adj.push_back({ 7 });
-}
-
-
-//find CutVertex
-// here °¡ CutVertexÀÌ·Á¸é hereÀÇ childÀÇ subtree¿¡¼­ °¥ ¼ö ÀÖ´Â ÃÖ¼Ò ¹ß°ß ¼ø¼­°¡ here ÀÌ»óÀÎ subtree°¡ Á¸ÀçÇÑ´Ù.
-// here°¡ rootÀÏ¶§ CutVertexÀÌ·Á¸é child ¼ö°¡ 2 ÀÌ»óÀÌ´Ù.
-int findCutVertex(int here, bool isroot) {
-	discovered[here] = counter++;
-	int ret = discovered[here];			// hereÀº ¹«Á¶°Ç ¹ß°ß°¡´É.
-	int children = 0;
-	for (int i = 0; i < adj[here].size(); i++) {
-		int there = adj[here][i];
-		if (discovered[there] == -1) { // there°¡ hereÀÇ ÀÚ¼Õ ³ëµåÀÎ °æ¿ì
-			children++;
-			int subtree = findCutVertex(there, false);
-			ret = min(ret, subtree);
-			if (!isroot && subtree >= discovered[here]) // thereÀÇ subtree¿¡¼­ °¥¼ö ÀÖ´Â ÃÖ¼Ò¹ß°ß¼ø¼­°¡ hereÀÌ»óÀÏ¶§  
-				isCutVertex[here] = true;
-		}
-		else // here->thereÀÌ backword EdgeÀÏ¶§
-			ret = min(ret, discovered[there]);
-	}
-	if (isroot) isCutVertex[here] = (children >= 2); // root°¡ cutVertexÀÎ °æ¿ì´Â ÀÚ¼Õ ³ëµå°¡ 2°³ ÀÌ»óÀÎ °æ¿ì.
-	return ret;
-}
-
-
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-	make_graph();
-	for (int i = 0; i < adj.size(); i++) {
-		if (discovered[i] == -1)
-			findCutVertex(i, true);
-	}
-	for (int i = 0; i < isCutVertex.size(); i++)
-		cout << isCutVertex[i];
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }
