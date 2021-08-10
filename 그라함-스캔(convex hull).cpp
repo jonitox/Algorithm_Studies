@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>	
@@ -47,14 +46,14 @@ int ccw(vec a, vec b, vec c) {
 	else return 0;
 }
 
-// ±âÁØÁ¡À» ±âÁØÀ¸·Î ÁÖ¾îÁø Á¡µéÀ» Á¤·ÄÇÏ±â À§ÇÑ ºñ±³ÇÔ¼ö°´Ã¼
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ã¼
 class CMP {
 public:
-	vec p; // ±âÁØÁ¡
+	vec p; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CMP(vec p):p(p){}
 	bool operator () (vec a, vec b) {
-		if (ccw(p, a, b) != 0) return ccw(p, a, b) > 0; // ¹Ý½Ã°è·Î Á¤·Ä
-		return (p - a).norm() < (p - b).norm();			// °¢µµ°¡ °°´Ù¸é °Å¸®°¡ °¡±î¿î ¼øÀ¸·Î Á¤·Ä
+		if (ccw(p, a, b) != 0) return ccw(p, a, b) > 0; // ï¿½Ý½Ã°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		return (p - a).norm() < (p - b).norm();			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	}
 };
 void solve() {
@@ -67,19 +66,19 @@ void solve() {
 		pts.push_back(vec(x, y));
 	}
 
-	// ±×¶óÇÔ-½ºÄµ
-	// ±âÁØÁ¡ Ã£±â : pts[0]
+	// ï¿½×¶ï¿½ï¿½ï¿½-ï¿½ï¿½Äµ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ : pts[0]
 	swap(pts[0], *min_element(pts.begin(), pts.end()));
-	// ±âÁØÁ¡À» Áß½ÉÀ¸·Î ³ª¸ÓÁöÁ¡À» ¹Ý½Ã°è·Î Á¤·Ä
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý½Ã°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	sort(pts.begin() + 1, pts.end(), CMP(pts[0]));
 
-	vector<vec> hull; // º¼·Ï²®Áú
-	// ±âÁØÁ¡°ú Ã¹¹øÂ°Á¡À» Ãß°¡ÇÏ°í
+	vector<vec> hull; // ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï°ï¿½
 	hull.push_back(pts[0]);
 	hull.push_back(pts[1]);
-	// ³ª¸ÓÁöÁ¡À» ¼øÈ¸
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
 	for (int i = 2; i < n; ++i) {
-		// ±âÁ¸ÀÇ Á¡°ú »õ·Î¿î Á¡ÀÌ ¹Ý½Ã°è¸¦ ÀÌ·çÁö ¾Ê´Â´Ù¸é ±âÁ¸ÀÇ Á¡À» Á¦°ÅÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý½Ã°è¸¦ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Ê´Â´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		while (hull.size() >= 2 && ccw(hull[hull.size() - 2], hull.back(), pts[i]) <= 0)
 			hull.pop_back();
 		hull.push_back(pts[i]);
@@ -98,104 +97,4 @@ int main() {
 
 	return 0;
 }
-=======
-#include <iostream>
-#include <string>
-#include <cstring>	
-#include <vector>
-#include <map>
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-#include <limits.h>
-#include <set>
 
-#define INF 1000000000
-using namespace std;
-#define EPS 1e-9
-
-int n;
-class vec {
-public:
-	double x, y;
-	vec(int x, int y):x(x),y(y){}
-	
-	bool operator ==(const vec& rhs) const {
-		return x == rhs.x && y == rhs.y;
-	}
-	bool operator <(const vec& rhs) const {
-		return x != rhs.x ? x < rhs.x : y < rhs.y;
-	}
-	vec operator - (const vec& rhs) const {
-		return vec(x - rhs.x, y - rhs.y);
-	}
-	double cross(const vec& rhs) const {
-		return x * rhs.y - y * rhs.x;
-	}
-	double norm() {
-		return hypot(x, y);
-	}
-};
-
-int ccw(vec a, vec b, vec c) {
-	double ret = (b - a).cross(c - a);
-	if (ret > 0) return 1;
-	else if (ret < 0) return -1;
-	else return 0;
-}
-
-// ±âÁØÁ¡À» ±âÁØÀ¸·Î ÁÖ¾îÁø Á¡µéÀ» Á¤·ÄÇÏ±â À§ÇÑ ºñ±³ÇÔ¼ö°´Ã¼
-class CMP {
-public:
-	vec p; // ±âÁØÁ¡
-	CMP(vec p):p(p){}
-	bool operator () (vec a, vec b) {
-		if (ccw(p, a, b) != 0) return ccw(p, a, b) > 0; // ¹Ý½Ã°è·Î Á¤·Ä
-		return (p - a).norm() < (p - b).norm();			// °¢µµ°¡ °°´Ù¸é °Å¸®°¡ °¡±î¿î ¼øÀ¸·Î Á¤·Ä
-	}
-};
-void solve() {
-	cin >> n;
-	vector<vec> pts;
-	
-	for (int i = 0; i < n; ++i) {
-		double x, y;
-		cin >> x >> y;
-		pts.push_back(vec(x, y));
-	}
-
-	// ±×¶óÇÔ-½ºÄµ
-	// ±âÁØÁ¡ Ã£±â : pts[0]
-	swap(pts[0], *min_element(pts.begin(), pts.end()));
-	// ±âÁØÁ¡À» Áß½ÉÀ¸·Î ³ª¸ÓÁöÁ¡À» ¹Ý½Ã°è·Î Á¤·Ä
-	sort(pts.begin() + 1, pts.end(), CMP(pts[0]));
-
-	vector<vec> hull; // º¼·Ï²®Áú
-	// ±âÁØÁ¡°ú Ã¹¹øÂ°Á¡À» Ãß°¡ÇÏ°í
-	hull.push_back(pts[0]);
-	hull.push_back(pts[1]);
-	// ³ª¸ÓÁöÁ¡À» ¼øÈ¸
-	for (int i = 2; i < n; ++i) {
-		// ±âÁ¸ÀÇ Á¡°ú »õ·Î¿î Á¡ÀÌ ¹Ý½Ã°è¸¦ ÀÌ·çÁö ¾Ê´Â´Ù¸é ±âÁ¸ÀÇ Á¡À» Á¦°ÅÇÑ´Ù.
-		while (hull.size() >= 2 && ccw(hull[hull.size() - 2], hull.back(), pts[i]) <= 0)
-			hull.pop_back();
-		hull.push_back(pts[i]);
-	}
-
-	cout << hull.size() << "\n";
-}
-
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-	solve();
-
-	return 0;
-}
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf

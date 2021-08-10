@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -17,19 +16,19 @@
 using namespace std;
 #define mod 1000000007
 
-// ÀÌºÐ ¸ÅÄª // º¹Àâµµ : V*E
+// ï¿½Ìºï¿½ ï¿½ï¿½Äª // ï¿½ï¿½ï¿½âµµ : V*E
 int n, m;
-int adj[200][200]; // ÀÎÁ¢Çà·Ä. // ÀÎÁ¢¸®½ºÆ®·Î ±¸ÇöÇØµµµÈ´Ù.
+int adj[200][200]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½È´ï¿½.
 vector<bool> vis;
-int amatch[200], bmatch[200]; // amatch´Â ±»ÀÌ ÇÊ¿ä¾ø´Ù.
+int amatch[200], bmatch[200]; // amatchï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½.
 
-// AÀÇ ¿ø¼Ò a¿¡¼­ Áõ°¡ °æ·Î¸¦ Å½»öÇÑ´Ù.
+// Aï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ aï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Î¸ï¿½ Å½ï¿½ï¿½ï¿½Ñ´ï¿½.
 bool dfs(int a) {
-	if (vis[a]) return false; // ÀÌ¹Ì ¹æ¹®ÇÏ¿© Å½»öÇÑ Á¡ÀÌ¸é ÀÌ Á¡À¸·ÎºÎÅÍ °æ·Î°¡ ¾ø´Ù.
+	if (vis[a]) return false; // ï¿½Ì¹ï¿½ ï¿½æ¹®ï¿½Ï¿ï¿½ Å½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	vis[a] = true;
-	for (int b = 0; b < m; ++b) { // B¸¦ ¼øÈ¸ÇÏ¸ç
-		if(adj[a][b]) // ¿¬°áµÈ bÀÇ ¿ø¼Ò¿¡ ´ëÇØ
-			// ¾ÆÁ÷ match°¡ ¾ø´Ù¸é ¿¬°á //** È¤Àº match°¡ ÀÖ´Ù¸é ´ëÀÀµÇ´Â A¿ø¼Ò¿¡¼­ ´Ù½Ã Áõ°¡°æ·Î¸¦ Å½»öÇØº»´Ù. = match Àç¹è¿­
+	for (int b = 0; b < m; ++b) { // Bï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï¸ï¿½
+		if(adj[a][b]) // ï¿½ï¿½ï¿½ï¿½ï¿½ bï¿½ï¿½ ï¿½ï¿½ï¿½Ò¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ matchï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ //** È¤ï¿½ï¿½ matchï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ Aï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¸ï¿½ Å½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½. = match ï¿½ï¿½è¿­
 			if (bmatch[b] == -1 || dfs(bmatch[b])) { 
 				amatch[a] = b;
 				bmatch[b] = a;
@@ -43,7 +42,7 @@ bool dfs(int a) {
 void solve() {
 	cin >> n >> m;
 
-	//°£¼± Ãß°¡
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	for (int i = 0; i < n; ++i) {
 		int a;
 		cin >> a;
@@ -55,14 +54,14 @@ void solve() {
 	}
 
 	int ans = 0;
-	// ÀÌºÐ ¸ÅÄª
-	// match ÃÊ±âÈ­
+	// ï¿½Ìºï¿½ ï¿½ï¿½Äª
+	// match ï¿½Ê±ï¿½È­
 	memset(amatch, -1, sizeof(amatch));
 	memset(bmatch, -1, sizeof(bmatch));
 	for (int i = 0; i < n; ++i) {
-		vis = vector<bool>(200, false); // vis¹è¿­ ÃÊ±âÈ­ //**¸Å Å½»ö Ãâ¹ß¸¶´Ù  ÃÊ±âÈ­ÇÑ´Ù. (Àç¹èÄ¡¸¦ ÇÒ¼öµµ ÀÖÀ¸¹Ç·Î)
+		vis = vector<bool>(200, false); // visï¿½è¿­ ï¿½Ê±ï¿½È­ //**ï¿½ï¿½ Å½ï¿½ï¿½ ï¿½ï¿½ß¸ï¿½ï¿½ï¿½  ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½. (ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ò¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½)
 		if (dfs(i)) {
-			ans++; //¸Å ¼º°ø½Ã ¸ÅÄª +1
+			ans++; //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Äª +1
 		}
 	}
 	cout << ans << "\n";
@@ -77,84 +76,4 @@ int main() {
 	solve();
 
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <list>
-#include <vector>
-#include <map>
-#include <set>
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <math.h>
-
-#define INF 2000000000
-using namespace std;
-#define mod 1000000007
-
-// ÀÌºÐ ¸ÅÄª // º¹Àâµµ : V*E
-int n, m;
-int adj[200][200]; // ÀÎÁ¢Çà·Ä. // ÀÎÁ¢¸®½ºÆ®·Î ±¸ÇöÇØµµµÈ´Ù.
-vector<bool> vis;
-int amatch[200], bmatch[200]; // amatch´Â ±»ÀÌ ÇÊ¿ä¾ø´Ù.
-
-// AÀÇ ¿ø¼Ò a¿¡¼­ Áõ°¡ °æ·Î¸¦ Å½»öÇÑ´Ù.
-bool dfs(int a) {
-	if (vis[a]) return false; // ÀÌ¹Ì ¹æ¹®ÇÏ¿© Å½»öÇÑ Á¡ÀÌ¸é ÀÌ Á¡À¸·ÎºÎÅÍ °æ·Î°¡ ¾ø´Ù.
-	vis[a] = true;
-	for (int b = 0; b < m; ++b) { // B¸¦ ¼øÈ¸ÇÏ¸ç
-		if(adj[a][b]) // ¿¬°áµÈ bÀÇ ¿ø¼Ò¿¡ ´ëÇØ
-			// ¾ÆÁ÷ match°¡ ¾ø´Ù¸é ¿¬°á //** È¤Àº match°¡ ÀÖ´Ù¸é ´ëÀÀµÇ´Â A¿ø¼Ò¿¡¼­ ´Ù½Ã Áõ°¡°æ·Î¸¦ Å½»öÇØº»´Ù. = match Àç¹è¿­
-			if (bmatch[b] == -1 || dfs(bmatch[b])) { 
-				amatch[a] = b;
-				bmatch[b] = a;
-				return true;
-			}
-	}
-	return false;
-}
-
-
-void solve() {
-	cin >> n >> m;
-
-	//°£¼± Ãß°¡
-	for (int i = 0; i < n; ++i) {
-		int a;
-		cin >> a;
-		for (int j = 0; j < a; ++j) {
-			int b;
-			cin >> b;
-			adj[i][b - 1] = 1;
-		}
-	}
-
-	int ans = 0;
-	// ÀÌºÐ ¸ÅÄª
-	// match ÃÊ±âÈ­
-	memset(amatch, -1, sizeof(amatch));
-	memset(bmatch, -1, sizeof(bmatch));
-	for (int i = 0; i < n; ++i) {
-		vis = vector<bool>(200, false); // vis¹è¿­ ÃÊ±âÈ­ //**¸Å Å½»ö Ãâ¹ß¸¶´Ù  ÃÊ±âÈ­ÇÑ´Ù. (Àç¹èÄ¡¸¦ ÇÒ¼öµµ ÀÖÀ¸¹Ç·Î)
-		if (dfs(i)) {
-			ans++; //¸Å ¼º°ø½Ã ¸ÅÄª +1
-		}
-	}
-	cout << ans << "\n";
-}
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-
-	solve();
-
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }

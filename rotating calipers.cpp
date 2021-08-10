@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>	
@@ -69,28 +68,28 @@ void solve() {
 		hull.push_back({ x,y });
 	}
 
-	// ·ÎÅ×ÀÌÆÃ Ä¶¸®ÆÛ½º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¶ï¿½ï¿½ï¿½Û½ï¿½
 	int m = hull.size();
-	vec calipers(0, -1); // Ä¶¸®ÆÛ½º ÃÊ±âÈ­ // ¿ÞÂÊ³¡¿¡ ³¢¿î ¹æÇâÀ» ±âÁØÀ¸·Î ÇÑ´Ù.
-	// °¡Àå¿ÞÂÊ³¡°ú ¿À¸¥ÂÊ³¡¿¡ ³¢¿ì°í ½ÃÀÛ
+	vec calipers(0, -1); // Ä¶ï¿½ï¿½ï¿½Û½ï¿½ ï¿½Ê±ï¿½È­ // ï¿½ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	int left = min_element(hull.begin(), hull.end()) - hull.begin();
 	int right = max_element(hull.begin(), hull.end()) - hull.begin();
 	int a = left, b = right;
 
-	// °¢º¯ÀÇ ¹æÇâº¤ÅÍ ÀúÀå
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âº¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	vector<vec> toNext(m);
 	for (int i = 0; i < m; ++i) {
 		toNext[i] = (hull[(i + 1) % m] - hull[i]).normalize();
 	}
 	
-	double ret = (hull[left] - hull[right]).norm(); // ¹ÝÈ¯ÇÒ µÎÁ¡ »çÀÌ°Å¸® ÃÖ´ñ°ª
+	double ret = (hull[left] - hull[right]).norm(); // ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°Å¸ï¿½ ï¿½Ö´ï¿½
 
-	// Ä¶¸®ÆÛ½º¸¦ ¹Ý¹ÙÄû È¸ÀüÇÒ¶§±îÁö µ¹·Áº»´Ù.
+	// Ä¶ï¿½ï¿½ï¿½Û½ï¿½ï¿½ï¿½ ï¿½Ý¹ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	while (a != right || b != left) {
-		// È¸Àü °¢µµ°¡ ´õ ÀÛÀº ÂÊÀ¸·Î º¯¿¡¸ÂÃç µ¹¸®±â
+		// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		double cosA = calipers.dot(toNext[a]); 
 		double cosB = -calipers.dot(toNext[b]);
-		// °¢µµ°¡ ´õ ÀÛÀ¸¸é dot°ªÀÌ ´õ Å©´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dotï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½ï¿½.
 		if (cosA > cosB) {
 			calipers = toNext[a];
 			a = (a + 1)%m;
@@ -115,121 +114,4 @@ int main() {
 	
 	return 0;
 }
-=======
-#include <iostream>
-#include <string>
-#include <cstring>	
-#include <vector>
-#include <map>
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-#include <limits.h>
-#include <set>
 
-#define INF 1000000000
-using namespace std;
-#define EPS 1e-9
-
-int n;
-class vec {
-public:
-	double x, y;
-	vec(double x=0, double y=0):x(x),y(y){}
-	
-	vec operator -()const {
-		return vec(-x, -y);
-	}
-	bool operator ==(const vec& rhs) const {
-		return x == rhs.x && y == rhs.y;
-	}
-
-	bool operator <(const vec& rhs) const {
-		return x != rhs.x ? x < rhs.x : y < rhs.y;
-	}
-
-	vec operator - (const vec& rhs) const {
-		return vec(x - rhs.x, y - rhs.y);
-	}
-	double dot(const vec& rhs) const {
-		return x * rhs.x + y * rhs.y;
-	}
-	double cross(const vec& rhs) const {
-		return x * rhs.y - y * rhs.x;
-	}
-	double norm() {
-		return hypot(x, y);
-	}
-	vec normalize() {
-		return vec(x / norm(),y/norm());
-	}
-};
-
-int ccw(vec a, vec b, vec c) {
-	double ret = (b - a).cross(c - a);
-	if (ret > 0) return 1;
-	else if (ret < 0) return -1;
-	else return 0;
-}
-
-
-void solve() {
-	cin >> n;
-	
-	vector<vec> hull;
-	for (int i = 0; i < n; ++i) {
-		int x, y;
-		cin >> x >> y;
-		hull.push_back({ x,y });
-	}
-
-	// ·ÎÅ×ÀÌÆÃ Ä¶¸®ÆÛ½º
-	int m = hull.size();
-	vec calipers(0, -1); // Ä¶¸®ÆÛ½º ÃÊ±âÈ­ // ¿ÞÂÊ³¡¿¡ ³¢¿î ¹æÇâÀ» ±âÁØÀ¸·Î ÇÑ´Ù.
-	// °¡Àå¿ÞÂÊ³¡°ú ¿À¸¥ÂÊ³¡¿¡ ³¢¿ì°í ½ÃÀÛ
-	int left = min_element(hull.begin(), hull.end()) - hull.begin();
-	int right = max_element(hull.begin(), hull.end()) - hull.begin();
-	int a = left, b = right;
-
-	// °¢º¯ÀÇ ¹æÇâº¤ÅÍ ÀúÀå
-	vector<vec> toNext(m);
-	for (int i = 0; i < m; ++i) {
-		toNext[i] = (hull[(i + 1) % m] - hull[i]).normalize();
-	}
-	
-	double ret = (hull[left] - hull[right]).norm(); // ¹ÝÈ¯ÇÒ µÎÁ¡ »çÀÌ°Å¸® ÃÖ´ñ°ª
-
-	// Ä¶¸®ÆÛ½º¸¦ ¹Ý¹ÙÄû È¸ÀüÇÒ¶§±îÁö µ¹·Áº»´Ù.
-	while (a != right || b != left) {
-		// È¸Àü °¢µµ°¡ ´õ ÀÛÀº ÂÊÀ¸·Î º¯¿¡¸ÂÃç µ¹¸®±â
-		double cosA = calipers.dot(toNext[a]); 
-		double cosB = -calipers.dot(toNext[b]);
-		// °¢µµ°¡ ´õ ÀÛÀ¸¸é dot°ªÀÌ ´õ Å©´Ù.
-		if (cosA > cosB) {
-			calipers = toNext[a];
-			a = (a + 1)%m;
-		}
-		else {
-			calipers = -toNext[b];
-			b = (b + 1) % m;
-		}
-		ret = max(ret, (hull[a] - hull[b]).norm());
-		
-	}
-	printf("%.8lf\n", ret);
-}
-
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-	solve();
-	
-	return 0;
-}
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf

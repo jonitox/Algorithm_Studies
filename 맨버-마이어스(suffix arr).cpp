@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -17,19 +16,19 @@
 using namespace std;
 #define mod 1000000007
 
-// ¸Ç¹ö-¸¶ÀÌ¾î½º
+// ï¿½Ç¹ï¿½-ï¿½ï¿½ï¿½Ì¾î½º
 
 string s;
 int len;
 
-// suffix¸¦ t±ÛÀÚ±âÁØÀ¸·Î Á¤·ÄÇÑ group¹è¿­À» ÀÌ¿ëÇØ¼­ 2t±ÛÀÚ ±âÁØÀ¸·Î ºñ±³ÇÏ±âÀ§ÇÑ ÇÔ¼ö°´Ã¼
+// suffixï¿½ï¿½ tï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ groupï¿½è¿­ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ 2tï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½Ã¼
 class COMP {
 public:
 	int t;
-	vector<int>& group; // t±âÁØÀ¸·Î Á¤·ÄµÈ ±×·ì¹øÈ£ // group¹è¿­Àº Ç×»ó & (ÂüÁ¶ÀÚ)·Î ÀÔ·Â¹Ş°í ÀúÀåÇÑ´Ù.
+	vector<int>& group; // tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Äµï¿½ ï¿½×·ï¿½ï¿½È£ // groupï¿½è¿­ï¿½ï¿½ ï¿½×»ï¿½ & (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½Ô·Â¹Ş°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	COMP(int t,vector<int>& group):t(t),group(group){}
 
-	bool operator()(int a, int b) { // 2*t±âÁØÀ¸·Î ºñ±³ÇÏ´Â ºñ±³ÀÚ
+	bool operator()(int a, int b) { // 2*tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if (group[a] != group[b]) return group[a]<group[b];
 		return group[a + t] < group[b + t];
 	}
@@ -41,34 +40,34 @@ void solve() {
 	len = s.size();
 	int t = 1;
 	vector<int> perm(len); //suffix arr
-	vector<int> group(len + 1); // group¹øÈ£
+	vector<int> group(len + 1); // groupï¿½ï¿½È£
 	for (int i = 0; i < len; ++i) {
 		perm[i] = i;
 	}
 	for (int i = 0; i < len; ++i) {
-		group[i] = s[i];	// t=1ÀÏ‹š´Â Ã¹ ±ÛÀÚ¸¦ ±âÁØÀ¸·Î Á¤·ÄÇÏ±â À§ÇØ, °¢ Ã¹±ÛÀÚ¸¦ ±×·ì ¹øÈ£·Î ÀúÀåÇÑ´Ù.(Ã¹ ±ÛÀÚ Å©±â¼ø= »çÀü¼ø)
+		group[i] = s[i];	// t=1ï¿½Ï‹ï¿½ï¿½ï¿½ Ã¹ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ Ã¹ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½×·ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.(Ã¹ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½= ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	}
-	group[len] = -1; // a+t, b+t = nÀÎ °æ¿ì¸¦ À§ÇØ ÀúÀå. // ¾Õ t±ÛÀÚ°¡ °°Àº ¹®ÀÚ¿­ Áß ¹®ÀÚ¿­ÀÌ Á¤È®È÷ t±ÛÀÚÀÎ ¹®ÀÚ¿­ÀÌ »çÀü¼øÀ¸·Î °¡Àå ¸ÕÀú ¿Àµµ·Ï ÇÑ´Ù.
+	group[len] = -1; // a+t, b+t = nï¿½ï¿½ ï¿½ï¿½ì¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. // ï¿½ï¿½ tï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	
-	// t±âÁØÀ¸·Î Á¤·ÄÇÑ ±×·ì¹øÈ£¸¦ ÀÌ¿ëÇØ¼­ 2t±âÁØÀ¸·Î Á¤·ÄÇÑ´Ù.
+	// tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ 2tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	while (t < len) {
 		COMP cmp(t, group);
-		sort(perm.begin(), perm.end(), cmp); // 2t±âÁØ Á¤·Ä
+		sort(perm.begin(), perm.end(), cmp); // 2tï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		
-		// ±âÁØÀÎ 2t°¡ n±ÛÀÚ ÀÌ»óÀÌ¶ó¸é Á¾·á.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2tï¿½ï¿½ nï¿½ï¿½ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		t *= 2;
 		if (t >= len) break;
 		
-		// ´ÙÀ½ ±×·ì¹øÈ£ ¹èÁ¤.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½.
 		vector<int> ngroup(len+1);
 		ngroup[perm[0]] = 0;
 		ngroup[len] = -1;
-		// 2t±ÛÀÚ ±âÁØÀ¸·Î Á¤·ÄµÈ suffix arr(perm)ÀÇ ¾Õ¿¡¼­ºÎÅÍ µÎ°³¾¿ ºñ±³ÇÏ¿©
+		// 2tï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Äµï¿½ suffix arr(perm)ï¿½ï¿½ ï¿½Õ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½
 		for (int i = 1; i < len; ++i) {
-			if (cmp(perm[i - 1], perm[i])) // 2*t±âÁØÀ¸·Î ºñ±³ÇßÀ»¶§, µÎ suffix°¡ ºñ±³°¡ µÇ¾ú´Ù¸é, ¼­·Î ´Ù¸¥ ±×·ì(1À» ´õÇÔ)
+			if (cmp(perm[i - 1], perm[i])) // 2*tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ suffixï¿½ï¿½ ï¿½ñ±³°ï¿½ ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½×·ï¿½(1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 				ngroup[perm[i]] = ngroup[perm[i - 1]] + 1;
 			else
-				ngroup[perm[i]] = ngroup[perm[i - 1]]; // ¾Æ´Ï¶ó¸é ¼­·Î °°Àº ±×·ìÀÌ´Ù.
+				ngroup[perm[i]] = ngroup[perm[i - 1]]; // ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ì´ï¿½.
 		}
 		group = ngroup;
 	}
@@ -83,90 +82,4 @@ int main() {
 	solve();
 
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <list>
-#include <vector>
-#include <map>
-#include <set>
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <math.h>
-
-#define INF 2000000000
-using namespace std;
-#define mod 1000000007
-
-// ¸Ç¹ö-¸¶ÀÌ¾î½º
-
-string s;
-int len;
-
-// suffix¸¦ t±ÛÀÚ±âÁØÀ¸·Î Á¤·ÄÇÑ group¹è¿­À» ÀÌ¿ëÇØ¼­ 2t±ÛÀÚ ±âÁØÀ¸·Î ºñ±³ÇÏ±âÀ§ÇÑ ÇÔ¼ö°´Ã¼
-class COMP {
-public:
-	int t;
-	vector<int>& group; // t±âÁØÀ¸·Î Á¤·ÄµÈ ±×·ì¹øÈ£ // group¹è¿­Àº Ç×»ó & (ÂüÁ¶ÀÚ)·Î ÀÔ·Â¹Ş°í ÀúÀåÇÑ´Ù.
-	COMP(int t,vector<int>& group):t(t),group(group){}
-
-	bool operator()(int a, int b) { // 2*t±âÁØÀ¸·Î ºñ±³ÇÏ´Â ºñ±³ÀÚ
-		if (group[a] != group[b]) return group[a]<group[b];
-		return group[a + t] < group[b + t];
-	}
-};
-
-void solve() {
-	cin >> s;
-
-	len = s.size();
-	int t = 1;
-	vector<int> perm(len); //suffix arr
-	vector<int> group(len + 1); // group¹øÈ£
-	for (int i = 0; i < len; ++i) {
-		perm[i] = i;
-	}
-	for (int i = 0; i < len; ++i) {
-		group[i] = s[i];	// t=1ÀÏ‹š´Â Ã¹ ±ÛÀÚ¸¦ ±âÁØÀ¸·Î Á¤·ÄÇÏ±â À§ÇØ, °¢ Ã¹±ÛÀÚ¸¦ ±×·ì ¹øÈ£·Î ÀúÀåÇÑ´Ù.(Ã¹ ±ÛÀÚ Å©±â¼ø= »çÀü¼ø)
-	}
-	group[len] = -1; // a+t, b+t = nÀÎ °æ¿ì¸¦ À§ÇØ ÀúÀå. // ¾Õ t±ÛÀÚ°¡ °°Àº ¹®ÀÚ¿­ Áß ¹®ÀÚ¿­ÀÌ Á¤È®È÷ t±ÛÀÚÀÎ ¹®ÀÚ¿­ÀÌ »çÀü¼øÀ¸·Î °¡Àå ¸ÕÀú ¿Àµµ·Ï ÇÑ´Ù.
-	
-	// t±âÁØÀ¸·Î Á¤·ÄÇÑ ±×·ì¹øÈ£¸¦ ÀÌ¿ëÇØ¼­ 2t±âÁØÀ¸·Î Á¤·ÄÇÑ´Ù.
-	while (t < len) {
-		COMP cmp(t, group);
-		sort(perm.begin(), perm.end(), cmp); // 2t±âÁØ Á¤·Ä
-		
-		// ±âÁØÀÎ 2t°¡ n±ÛÀÚ ÀÌ»óÀÌ¶ó¸é Á¾·á.
-		t *= 2;
-		if (t >= len) break;
-		
-		// ´ÙÀ½ ±×·ì¹øÈ£ ¹èÁ¤.
-		vector<int> ngroup(len+1);
-		ngroup[perm[0]] = 0;
-		ngroup[len] = -1;
-		// 2t±ÛÀÚ ±âÁØÀ¸·Î Á¤·ÄµÈ suffix arr(perm)ÀÇ ¾Õ¿¡¼­ºÎÅÍ µÎ°³¾¿ ºñ±³ÇÏ¿©
-		for (int i = 1; i < len; ++i) {
-			if (cmp(perm[i - 1], perm[i])) // 2*t±âÁØÀ¸·Î ºñ±³ÇßÀ»¶§, µÎ suffix°¡ ºñ±³°¡ µÇ¾ú´Ù¸é, ¼­·Î ´Ù¸¥ ±×·ì(1À» ´õÇÔ)
-				ngroup[perm[i]] = ngroup[perm[i - 1]] + 1;
-			else
-				ngroup[perm[i]] = ngroup[perm[i - 1]]; // ¾Æ´Ï¶ó¸é ¼­·Î °°Àº ±×·ìÀÌ´Ù.
-		}
-		group = ngroup;
-	}
-	
-}
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-	solve();
-
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }

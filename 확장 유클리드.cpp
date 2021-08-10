@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -24,37 +23,37 @@ typedef vector<vector<int>> vvi;
 typedef pair<int, int> pii;
 typedef vector<pii> vpii;
 
-// ÀÏ¹Ý À¯Å¬¸®µå
-// ¼­·Î¼Ò ¿©ºÎ(È¤Àº µÑÁß ÇÏ³ª°¡ 1) Ã£À»¶© È®Àå ¸»°í ÀÏ¹Ý À¯Å¬¸®µå¸¦ »ç¿ëÇÏÀÚ.
+// ï¿½Ï¹ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½(È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ 1) Ã£ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 int gcd(int a, int b) {
 	if (b == 0) return a;
 	return gcd(b, a%b);
 }
 
-// È®Àå À¯Å¬¸®µå È£Á¦¹ý // a,b>1ÀÏ¶§¸¸ ÀÔ·ÂÀ¸·Î µé¾î¿Â´Ù °¡Á¤ÇÏÀÚ.
+// È®ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ // a,b>1ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 pair<int, pii> extended_gcd(int a, int b) {
     if (a < b)	swap(a, b);
-    // gcd(a,b) = gcd(r0,r1) À¸·Î ¹Ù²Ù°í, gcd(r0,r1) = gcd(r1,r0%r1) =gcd(r1,r2) ..¶ó°í Á¤ÀÇÇÒ¶§, ÃÖÁ¾ gcd(r,0)ÀÌ µÉ¶§±îÁö ¹Ýº¹ÇÑ´Ù.(r= gcd(a,b))
+    // gcd(a,b) = gcd(r0,r1) ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù°ï¿½, gcd(r0,r1) = gcd(r1,r0%r1) =gcd(r1,r2) ..ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½, ï¿½ï¿½ï¿½ï¿½ gcd(r,0)ï¿½ï¿½ ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Ñ´ï¿½.(r= gcd(a,b))
     // ri = si*a+t8Ib
     int r0 = a, r1 = b;
 	int s0 = 1, s1 = 0;
 	int t0 = 0, t1 = 1;
 	
 	while (1) {
-		int q = r0 / r1; // q = r(i-1)/r(i)·Î Á¤ÀÇ
+		int q = r0 / r1; // q = r(i-1)/r(i)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		int r = r0 % r1; // r(i) = r(i-2)%r(i-1)
 		r0 = r1;
 		r1 = r;
 		if (r1 == 0)
 			break;
-		int s = s0 - s1 * q; // s(i) = s(i-2) - q(i)*s(i-1) °¡ ¼º¸³
-		int t = t0 - t1 * q; // t(i) = t(i-2) - q(i)*t(i-1) °¡ ¼º¸³
+		int s = s0 - s1 * q; // s(i) = s(i-2) - q(i)*s(i-1) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int t = t0 - t1 * q; // t(i) = t(i-2) - q(i)*t(i-1) ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		s0 = s1; s1 = s;
 		t0 = t1; t1 = t;
 	}
-	return { r0,{s1,t1} }; // r0(=gcd(a,b)) = s1*a + t1*b¸¦ ¹ÝÈ¯.
-    // aÀÇ mod b¿¡ ´ëÇÑ ¿ª¿ø ±¸ÇÒ½Ã(a^-1ÀÌ Á¸ÀçÇÑ´Ù¸é), s1ÀÌ aÀÇ °ö¿ª¿ø. // ±× ÀÌÀ¯´Â, 1 = gcd(a,b)  = a*s+b*t¿¡¼­ a*s=1(mod b)
-    // s°¡ ¸¸¾à À½¼ö¶ó¸é +bÇØÁÖ¸é 0~b-1ÀÇ °ª(mod °ª)À¸·Î Ã£À»¼ö ÀÖ´Ù.
+	return { r0,{s1,t1} }; // r0(=gcd(a,b)) = s1*a + t1*bï¿½ï¿½ ï¿½ï¿½È¯.
+    // aï¿½ï¿½ mod bï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½(a^-1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½), s1ï¿½ï¿½ aï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 1 = gcd(a,b)  = a*s+b*tï¿½ï¿½ï¿½ï¿½ a*s=1(mod b)
+    // sï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ +bï¿½ï¿½ï¿½Ö¸ï¿½ 0~b-1ï¿½ï¿½ ï¿½ï¿½(mod ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½.
 }
 void solve() {
 	int a, b;
@@ -72,79 +71,4 @@ int main() {
 		solve();
 
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <set>
-#include <vector>
-#include<map> 
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-
-#define INF 1000000000
-#define mod 1000000007
-
-using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<bool> vb;
-typedef vector<long long> vll;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pii;
-typedef vector<pii> vpii;
-
-// ÀÏ¹Ý À¯Å¬¸®µå
-// ¼­·Î¼Ò ¿©ºÎ(È¤Àº µÑÁß ÇÏ³ª°¡ 1) Ã£À»¶© È®Àå ¸»°í ÀÏ¹Ý À¯Å¬¸®µå¸¦ »ç¿ëÇÏÀÚ.
-int gcd(int a, int b) {
-	if (b == 0) return a;
-	return gcd(b, a%b);
-}
-
-// È®Àå À¯Å¬¸®µå È£Á¦¹ý // a,b>1ÀÏ¶§¸¸ ÀÔ·ÂÀ¸·Î µé¾î¿Â´Ù °¡Á¤ÇÏÀÚ.
-pair<int, pii> extended_gcd(int a, int b) {
-    if (a < b)	swap(a, b);
-    // gcd(a,b) = gcd(r0,r1) À¸·Î ¹Ù²Ù°í, gcd(r0,r1) = gcd(r1,r0%r1) =gcd(r1,r2) ..¶ó°í Á¤ÀÇÇÒ¶§, ÃÖÁ¾ gcd(r,0)ÀÌ µÉ¶§±îÁö ¹Ýº¹ÇÑ´Ù.(r= gcd(a,b))
-    // ri = si*a+t8Ib
-    int r0 = a, r1 = b;
-	int s0 = 1, s1 = 0;
-	int t0 = 0, t1 = 1;
-	
-	while (1) {
-		int q = r0 / r1; // q = r(i-1)/r(i)·Î Á¤ÀÇ
-		int r = r0 % r1; // r(i) = r(i-2)%r(i-1)
-		r0 = r1;
-		r1 = r;
-		if (r1 == 0)
-			break;
-		int s = s0 - s1 * q; // s(i) = s(i-2) - q(i)*s(i-1) °¡ ¼º¸³
-		int t = t0 - t1 * q; // t(i) = t(i-2) - q(i)*t(i-1) °¡ ¼º¸³
-		s0 = s1; s1 = s;
-		t0 = t1; t1 = t;
-	}
-	return { r0,{s1,t1} }; // r0(=gcd(a,b)) = s1*a + t1*b¸¦ ¹ÝÈ¯.
-    // aÀÇ mod b¿¡ ´ëÇÑ ¿ª¿ø ±¸ÇÒ½Ã(a^-1ÀÌ Á¸ÀçÇÑ´Ù¸é), s1ÀÌ aÀÇ °ö¿ª¿ø. // ±× ÀÌÀ¯´Â, 1 = gcd(a,b)  = a*s+b*t¿¡¼­ a*s=1(mod b)
-    // s°¡ ¸¸¾à À½¼ö¶ó¸é +bÇØÁÖ¸é 0~b-1ÀÇ °ª(mod °ª)À¸·Î Ã£À»¼ö ÀÖ´Ù.
-}
-void solve() {
-	int a, b;
-	cin >> a >> b;
-	auto k = extended_gcd(a, b);
-	cout << k.first << k.second.first << k.second.second;
-}
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-	while (1)
-		solve();
-
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }

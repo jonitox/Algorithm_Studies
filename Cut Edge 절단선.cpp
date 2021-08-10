@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -37,27 +36,27 @@ void makeGraph() {
 }
 
 // find CutEdge 
-// dfs ½ºÆÐ´× Æ®¸®¿¡¼­ backword edge´Â cutEdge°¡ µÉ¼ö ¾ø´Ù.(tree edge¸¦ ÀÌ¿ëÇÑ ´Ù¸¥ °æ·Î°¡ Ç×»ó ÀÖ±â¶§¹®.) Áï, dfs¼öÇàÇÏ¸é¼­ Áö³ª¿Â tree edge°¡ cutEdgeÀÎÁö¸¸ È®ÀÎÇÏ¸éµÈ´Ù.
-// u-v (parent[here]¿Í here)°¡ CutEdgeÀÌ·Á¸é (**v¿¡¼­ u·ÎÀÇ °£¼±À» Á¦¿ÜÇÏ°í) vÀÇ subtree¿¡¼­ °¥ ¼öÀÖ´Â ÃÖ¼Ò ¹ß°ß ¼ø¼­°¡ u ÀÌÈÄÀÌ´Ù.
-// v°¡ rootÀÏ¶§´Â parent°¡ ¾øÀ¸¹Ç·Î CutEdge¸¦ Ã£Áö ¾Ê´Â´Ù.
-int dfs(int here, bool isRoot) {			// CutVertex¿Í ¸¶Âù°¡Áö·Î here¿¡¼­ °¥¼öÀÖ´Â ÃÖ¼Ò¹ß°ß¼ø¼­ ¹ÝÈ¯. ´Ü, parent[here]-here¸¦ Á¦¿ÜÇÏ°í.  
+// dfs ï¿½ï¿½ï¿½Ð´ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ backword edgeï¿½ï¿½ cutEdgeï¿½ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½.(tree edgeï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½Î°ï¿½ ï¿½×»ï¿½ ï¿½Ö±â¶§ï¿½ï¿½.) ï¿½ï¿½, dfsï¿½ï¿½ï¿½ï¿½ï¿½Ï¸é¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ tree edgeï¿½ï¿½ cutEdgeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï¸ï¿½È´ï¿½.
+// u-v (parent[here]ï¿½ï¿½ here)ï¿½ï¿½ CutEdgeï¿½Ì·ï¿½ï¿½ï¿½ (**vï¿½ï¿½ï¿½ï¿½ uï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½) vï¿½ï¿½ subtreeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ö¼ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ u ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
+// vï¿½ï¿½ rootï¿½Ï¶ï¿½ï¿½ï¿½ parentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ CutEdgeï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+int dfs(int here, bool isRoot) {			// CutVertexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ hereï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ö¼Ò¹ß°ß¼ï¿½ï¿½ï¿½ ï¿½ï¿½È¯. ï¿½ï¿½, parent[here]-hereï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½.  
 	discovered[here] = cnt++;
 	int ret = discovered[here];
 
 	for (int i = 0; i < adj[here].size(); i++) {
 		int there = adj[here][i];
-		if (discovered[there] == -1) { // there°¡ hereÀÇ ÀÚ¼Õ ³ëµåÀÏ¶§
+		if (discovered[there] == -1) { // thereï¿½ï¿½ hereï¿½ï¿½ ï¿½Ú¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
 			parent[there] = here;
 			int subtree = dfs(there, false);
 			ret = min(ret, subtree);
 		}
-		else if (there != parent[here]) // u-v¸¦ Á¦¿ÜÇÏ°í °¥¼öÀÖ´Â ³ëµå
+		else if (there != parent[here]) // u-vï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
 			ret = min(ret, discovered[there]);
 	}
-	if (!isRoot&&ret >= discovered[here]) { // here¿¡¼­ °¥¼öÀÖ´Â ÃÖ¼Ò ¹ß°ß ¼ø¼­°¡ parent[here] ÀÌÈÄÀÏ¶§
+	if (!isRoot&&ret >= discovered[here]) { // hereï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ö¼ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ parent[here] ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
 		int a = here + 1, b = parent[here] + 1;
 		if (a > b) swap(a, b);
-		cutEdge.push_back(make_pair(a, b)); // cutEdge ÀúÀå.
+		cutEdge.push_back(make_pair(a, b)); // cutEdge ï¿½ï¿½ï¿½ï¿½.
 	}
 
 
@@ -83,90 +82,4 @@ int main() {
 	for (int i = 0; i < cutEdge.size(); i++)
 		cout << cutEdge[i].first << " " << cutEdge[i].second << "\n";
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <set>
-#include <vector>
-#include<map> 
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-#include <limits.h>
-
-#define INF 1000000000
-#define mod 100
-using namespace std;
-vector<vector<int>> adj;
-vector<int> discovered, parent;
-vector<pair<int, int>> cutEdge;
-int v, e, cnt = 0;
-
-void makeGraph() {
-	cin >> v >> e;
-
-	discovered = vector<int>(v, -1);
-	adj = vector<vector<int>>(v);
-	parent = vector<int>(v);
-	int a, b;
-	for (int i = 0; i < e; i++) {
-		cin >> a >> b;
-		adj[a - 1].push_back(b - 1);
-		adj[b - 1].push_back(a - 1);
-	}
-	return;
-}
-
-// find CutEdge 
-// dfs ½ºÆÐ´× Æ®¸®¿¡¼­ backword edge´Â cutEdge°¡ µÉ¼ö ¾ø´Ù.(tree edge¸¦ ÀÌ¿ëÇÑ ´Ù¸¥ °æ·Î°¡ Ç×»ó ÀÖ±â¶§¹®.) Áï, dfs¼öÇàÇÏ¸é¼­ Áö³ª¿Â tree edge°¡ cutEdgeÀÎÁö¸¸ È®ÀÎÇÏ¸éµÈ´Ù.
-// u-v (parent[here]¿Í here)°¡ CutEdgeÀÌ·Á¸é (**v¿¡¼­ u·ÎÀÇ °£¼±À» Á¦¿ÜÇÏ°í) vÀÇ subtree¿¡¼­ °¥ ¼öÀÖ´Â ÃÖ¼Ò ¹ß°ß ¼ø¼­°¡ u ÀÌÈÄÀÌ´Ù.
-// v°¡ rootÀÏ¶§´Â parent°¡ ¾øÀ¸¹Ç·Î CutEdge¸¦ Ã£Áö ¾Ê´Â´Ù.
-int dfs(int here, bool isRoot) {			// CutVertex¿Í ¸¶Âù°¡Áö·Î here¿¡¼­ °¥¼öÀÖ´Â ÃÖ¼Ò¹ß°ß¼ø¼­ ¹ÝÈ¯. ´Ü, parent[here]-here¸¦ Á¦¿ÜÇÏ°í.  
-	discovered[here] = cnt++;
-	int ret = discovered[here];
-
-	for (int i = 0; i < adj[here].size(); i++) {
-		int there = adj[here][i];
-		if (discovered[there] == -1) { // there°¡ hereÀÇ ÀÚ¼Õ ³ëµåÀÏ¶§
-			parent[there] = here;
-			int subtree = dfs(there, false);
-			ret = min(ret, subtree);
-		}
-		else if (there != parent[here]) // u-v¸¦ Á¦¿ÜÇÏ°í °¥¼öÀÖ´Â ³ëµå
-			ret = min(ret, discovered[there]);
-	}
-	if (!isRoot&&ret >= discovered[here]) { // here¿¡¼­ °¥¼öÀÖ´Â ÃÖ¼Ò ¹ß°ß ¼ø¼­°¡ parent[here] ÀÌÈÄÀÏ¶§
-		int a = here + 1, b = parent[here] + 1;
-		if (a > b) swap(a, b);
-		cutEdge.push_back(make_pair(a, b)); // cutEdge ÀúÀå.
-	}
-
-
-	return ret;
-}
-
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-
-	makeGraph();
-	for (int i = 0; i < v; i++) {
-		if (discovered[i] == -1) {
-			parent[i] = i;
-			dfs(i, true);
-		}
-	}
-	cout << (int)cutEdge.size() << "\n";
-	sort(cutEdge.begin(), cutEdge.end());
-	for (int i = 0; i < cutEdge.size(); i++)
-		cout << cutEdge[i].first << " " << cutEdge[i].second << "\n";
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }

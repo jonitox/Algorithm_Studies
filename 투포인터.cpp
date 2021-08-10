@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -22,7 +21,7 @@ typedef vector<long long> vll;
 typedef vector<vector<int>> vvi;
 typedef pair<int, int> pii;
 
-// ÅõÆ÷ÀÎÅÍ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 int n,M;
 vi arr;
 
@@ -31,13 +30,13 @@ void solve() {
 	arr.resize(n);
 	for(int i=0; i<n; ++i)
 		cin >> arr[i];
-	int sum = 0, lo = 0, hi = 0; // [lo,hi)ÀÇ ÇÕÀ» sum¿¡ ÀúÀå.
+	int sum = 0, lo = 0, hi = 0; // [lo,hi)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ sumï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	int ans = 0;
 	while (1) {
-		if (sum >= M) sum -= arr[lo++]; // sum>=MÀÎ °æ¿ì
-		else if (hi == n) break;			// sum<MÀÌ°í hi==nÀÎ °æ¿ì
-		else sum += arr[hi++];			// sum<MÀÌ°í ´õ ÀÐÀº ¼ö°¡ ³²Àº °æ¿ì
-		if (sum == M) ans++; // ¸¶Áö¸·¿¡ sumÈ®ÀÎ.
+		if (sum >= M) sum -= arr[lo++]; // sum>=Mï¿½ï¿½ ï¿½ï¿½ï¿½
+		else if (hi == n) break;			// sum<Mï¿½Ì°ï¿½ hi==nï¿½ï¿½ ï¿½ï¿½ï¿½
+		else sum += arr[hi++];			// sum<Mï¿½Ì°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		if (sum == M) ans++; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ sumÈ®ï¿½ï¿½.
 	}
 }
 
@@ -54,61 +53,4 @@ int main() {
 		
 	
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <set>
-#include <vector>
-#include<map> 
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-
-#define INF 1000000000
-#define mod 100
-using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<bool> vb;
-typedef vector<long long> vll;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pii;
-
-// ÅõÆ÷ÀÎÅÍ
-int n,M;
-vi arr;
-
-void solve() {
-	cin >> n>>M;
-	arr.resize(n);
-	for(int i=0; i<n; ++i)
-		cin >> arr[i];
-	int sum = 0, lo = 0, hi = 0; // [lo,hi)ÀÇ ÇÕÀ» sum¿¡ ÀúÀå.
-	int ans = 0;
-	while (1) {
-		if (sum >= M) sum -= arr[lo++]; // sum>=MÀÎ °æ¿ì
-		else if (hi == n) break;			// sum<MÀÌ°í hi==nÀÎ °æ¿ì
-		else sum += arr[hi++];			// sum<MÀÌ°í ´õ ÀÐÀº ¼ö°¡ ³²Àº °æ¿ì
-		if (sum == M) ans++; // ¸¶Áö¸·¿¡ sumÈ®ÀÎ.
-	}
-}
-
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-	int t;
-	cin >> t;
-	for(int i=0; i<t; ++i)
-		solve();
-		
-	
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }

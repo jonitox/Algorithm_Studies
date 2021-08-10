@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -34,21 +33,21 @@ int init(vi& arr, int node, int l, int r) {
 	int mid = (l + r) / 2;
 	return tree[node] = min(init(arr, 2 * node, l, mid), init(arr, 2 * node + 1, mid + 1, r));
 }
-// lazy ÀüÆÄ
+// lazy ï¿½ï¿½ï¿½ï¿½
 void propagation(int node, int l, int r) {
-	// Çö ³ëµå¿¡ lazy°¡ ÀÖ´Ù¸é, Çö³ëµå¸¦ Ã³¸®ÇÏ°í, ÀÚ½Ä³ëµåµé¿¡ ÀüÆÄÇØÁØ´Ù.
+	// ï¿½ï¿½ ï¿½ï¿½å¿¡ lazyï¿½ï¿½ ï¿½Ö´Ù¸ï¿½, ï¿½ï¿½ï¿½ï¿½å¸¦ Ã³ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½Ú½Ä³ï¿½ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	if (lazy[node]) {
 		tree[node] += lazy[node];
 		if (l != r) {
 			lazy[2 * node] += lazy[node];
 			lazy[2 * node + 1] += lazy[node];
 		}
-		lazy[node] = 0; // lazy ÃÊ±âÈ­.
+		lazy[node] = 0; // lazy ï¿½Ê±ï¿½È­.
 	}
 }
 
 int query(int l, int r, int node, int nl, int nr) {
-	// Äõ¸®ÇÔ¼ö È£ÃâÇÒ½Ã, Çö³ëµå lazyÃ³¸®.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ È£ï¿½ï¿½ï¿½Ò½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ lazyÃ³ï¿½ï¿½.
 	propagation(node, nl, nr);
 	if (nr < l || r < nl) return INF;
 	if (l <= nl && nr <= r)	return tree[node];
@@ -60,16 +59,16 @@ int query(int l, int r) {
 	return query(l, r, 1, 0, n - 1);
 }
 
-// ±¸°£ update // ±âÁ¸ÀÇ ³ëµå(ÇÑ Á¡)update¿Í ´Ù¸§.
+// ï¿½ï¿½ï¿½ï¿½ update // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½updateï¿½ï¿½ ï¿½Ù¸ï¿½.
 int update(int l, int r, int val, int node, int nl, int nr) {
-	// updateÇÔ¼ö È£Ãâ½Ã, Çö³ëµå lazyÃ³¸®.
+	// updateï¿½Ô¼ï¿½ È£ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ lazyÃ³ï¿½ï¿½.
 	propagation(node, nl, nr);
-	// Äõ¸®ÇÔ¼ö¿Í À¯»çÇÏ°Ô, ±¸°£¿¡ ´ëÇÑ Ã³¸®ÀÌ¹Ç·Î, ±¸°£°ú ³ëµå°¡ ³ªÅ¸³»´Â ¹è¿­±¸°£°úÀÇ ±³ÁýÇÕÀ» updateÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ì¹Ç·ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ updateï¿½Ñ´ï¿½.
 	if (nr < l || r < nl) return tree[node];
-	// ±³ÁýÇÕÀÌ ³ëµå ÀüÃ¼¸¦ Æ÷ÇÔÇÏ¸é,
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½,
 	if (l <= nl && nr <= r) {
-		// Çö³ëµå¸¦ Á÷Á¢ °»½ÅÇÏ°í,
-		// ÀÚ½Ä³ëµå¸¦ Àç±ÍÀûÀ¸·Î È£ÃâÇÏÁö¾Ê°í, lazy¸¦ ÀÌ¿ëÇØ ÀÚ½Ä³ëµåµéÀ» ³ªÁß¿¡ Ã³¸®ÇØµÒÀ» ¸í½ÃÇØµÐ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½,
+		// ï¿½Ú½Ä³ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê°ï¿½, lazyï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ú½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ Ã³ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½.
 		tree[node] += val;
 		if (nl != nr) {
 			lazy[2 * node] += val;
@@ -77,7 +76,7 @@ int update(int l, int r, int val, int node, int nl, int nr) {
 		}
 		return tree[node];
 	}
-	// ±¸°£¿¡ ´ëÇÑ ¾÷µ¥ÀÌÆ®´Â nl==nrÀÎ Á¶°Ç¹® ½áÁÙÇÊ¿ä¾øÀ½. À§ÀÇ Á¶°Ç¹®À¸·Î Ã³¸®.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ nl==nrï¿½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½.
 	int mid = (nl + nr) / 2;
 	return tree[node] = min(update(l, r, val, 2 * node, nl, mid), update(l, r, val, 2 * node + 1, mid + 1, nr));
 }
@@ -102,109 +101,4 @@ int main() {
 	solve();
 
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <set>
-#include <vector>
-#include<map> 
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-
-#define INF 1000000000
-
-using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<bool> vb;
-typedef vector<long long> vll;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pii;
-typedef vector<pii> vpii;
-
-
-int n,k;
-int tree[100000 * 4];
-int lazy[100000 * 4];
-
-// RMQ seg tree with lazy propagation
-int init(vi& arr, int node, int l, int r) {
-	if (l == r) return tree[node] = l;
-	int mid = (l + r) / 2;
-	return tree[node] = min(init(arr, 2 * node, l, mid), init(arr, 2 * node + 1, mid + 1, r));
-}
-// lazy ÀüÆÄ
-void propagation(int node, int l, int r) {
-	// Çö ³ëµå¿¡ lazy°¡ ÀÖ´Ù¸é, Çö³ëµå¸¦ Ã³¸®ÇÏ°í, ÀÚ½Ä³ëµåµé¿¡ ÀüÆÄÇØÁØ´Ù.
-	if (lazy[node]) {
-		tree[node] += lazy[node];
-		if (l != r) {
-			lazy[2 * node] += lazy[node];
-			lazy[2 * node + 1] += lazy[node];
-		}
-		lazy[node] = 0; // lazy ÃÊ±âÈ­.
-	}
-}
-
-int query(int l, int r, int node, int nl, int nr) {
-	// Äõ¸®ÇÔ¼ö È£ÃâÇÒ½Ã, Çö³ëµå lazyÃ³¸®.
-	propagation(node, nl, nr);
-	if (nr < l || r < nl) return INF;
-	if (l <= nl && nr <= r)	return tree[node];
-	int mid = (nl + nr) / 2;
-	return min(query(l, r, 2 * node, nl, mid), query(l, r, 2 * node + 1, mid + 1, nr));
-}
-
-int query(int l, int r) {
-	return query(l, r, 1, 0, n - 1);
-}
-
-// ±¸°£ update // ±âÁ¸ÀÇ ³ëµåupdate¿Í ´Ù¸§.
-int update(int l, int r, int val, int node, int nl, int nr) {
-	// updateÇÔ¼ö È£Ãâ½Ã, Çö³ëµå lazyÃ³¸®.
-	propagation(node, nl, nr);
-	// Äõ¸®ÇÔ¼ö¿Í À¯»çÇÏ°Ô, ±¸°£¿¡ ´ëÇÑ Ã³¸®ÀÌ¹Ç·Î, ±¸°£°ú ³ëµå°¡ ³ªÅ¸³»´Â ¹è¿­±¸°£°úÀÇ ±³ÁýÇÕÀ» updateÇÑ´Ù.
-	if (nr < l || r < nl) return tree[node];
-	// ±³ÁýÇÕÀÌ ³ëµå ÀüÃ¼¸¦ Æ÷ÇÔÇÏ¸é,
-	if (l <= nl && nr <= r) {
-		// Çö³ëµå¸¦ Á÷Á¢ °»½ÅÇÏ°í,
-		// ÀÚ½Ä³ëµå¸¦ Àç±ÍÀûÀ¸·Î È£ÃâÇÏÁö¾Ê°í, lazy¸¦ ÀÌ¿ëÇØ ÀÚ½Ä³ëµåµéÀ» ³ªÁß¿¡ Ã³¸®ÇØµÒÀ» ¸í½ÃÇØµÐ´Ù.
-		tree[node] += val;
-		if (nl != nr) {
-			lazy[2 * node] += val;
-			lazy[2 * node + 1] += val;
-		}
-		return tree[node];
-	}
-	// ±¸°£¿¡ ´ëÇÑ ¾÷µ¥ÀÌÆ®´Â nl==nrÀÎ Á¶°Ç¹® ½áÁÙÇÊ¿ä¾øÀ½. À§ÀÇ Á¶°Ç¹®À¸·Î Ã³¸®.
-	int mid = (nl + nr) / 2;
-	return tree[node] = min(update(l, r, val, 2 * node, nl, mid), update(l, r, val, 2 * node + 1, mid + 1, nr));
-}
-int update(int l, int r, int val) {
-	return update(l, r, val, 1, 0, n - 1);
-}
-
-void solve() {
-	cin >> n>>k;
-	vi arr(n, 0);
-	init(arr, 1, 0, n - 1);
-}
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-
-	
-	
-	solve();
-
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }

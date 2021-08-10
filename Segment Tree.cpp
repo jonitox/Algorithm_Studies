@@ -31,38 +31,25 @@ typedef vector<pll> vpll;
 #define MAXN 100010
 
 int n, q;
-<<<<<<< HEAD
-int arr[MAXN];
-int tree[MAXN * 4];
 
-// seg tree // �?분합 쿼리. 
-int init(int nd, int st, int en) {
-=======
 ll arr[MAXN];
 ll tree[MAXN * 4];
 
 // seg tree // 부분합 쿼리. 
 ll init(int nd, int st, int en) {
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
     if (st == en) return tree[nd] = arr[st];
     int mid = (st + en) / 2;
     return tree[nd] = init(2 * nd, st, mid) + init(2 * nd + 1, mid + 1, en);
 }
-<<<<<<< HEAD
-int query(int nd, int st, int en, int l, int r) {
-=======
+
 ll query(int nd, int st, int en, int l, int r) {
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
     if (r < st || en < l) return 0;
     if (l <= st && en <= r) return tree[nd];
     int mid = (st + en) / 2;
     return query(2 * nd, st, mid, l, r) + query(2 * nd + 1, mid + 1, en, l, r);
 }
-<<<<<<< HEAD
-int query(int l, int r) {
-=======
+
 ll query(int l, int r) {
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
     return query(1, 0, n - 1, l, r);
 }
 void update(int idx, int val, int nd, int st, int en) {

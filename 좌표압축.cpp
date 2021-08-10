@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -24,36 +23,36 @@ typedef vector<vector<int>> vvi;
 typedef pair<int, int> pii;
 typedef vector<pii> vpii;
 
-// ÁÂÇ¥¾ÐÃà
-vi idx; // ÀÔ·ÂÀ¸·Î µé¾î¿Â °ª(ÁÂÇ¥)µéÀ» ¸ðµÎ ÀúÀåÇÏ¿© Á¤·ÄÇÑ ¹è¿­.
-// ÀÓÀÇÀÇ °ªÀÇ ¾ÐÃàµÈ(´ëÀÀµÇ´Â) ÁÂÇ¥ ¹ÝÈ¯
+// ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½
+vi idx; // ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½Ç¥)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½) ï¿½ï¿½Ç¥ ï¿½ï¿½È¯
 int getIdx(int x) {
 	return lower_bound(idx.begin(), idx.end(),x)-idx.begin();
 }
 
 void solve() {
-	// ex) n°³ÀÇ 1Â÷¿ø ÁÂÇ¥°¡ µé¾î¿À°í 1Â÷¿øÁ÷¼±»ó¿¡¼­ x~y±¸°£¿¡ ÀÖ´Â Á¡ÀÇ °³¼ö¸¦ ¹¯´Â q°³ÀÇ Äõ¸®¸¦ ¹¯´Â ¹®Á¦¶ó¸é,
+	// ex) nï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó¿¡¼ï¿½ x~yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ qï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,
 	int n,q;
 	cin >> n>>q;
-	// Á÷¼±¿¡ Á¸ÀçÇÏ´Â Á¡ÀÇ ÁÂÇ¥ ÀÔ·Â.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½Ô·ï¿½.
 	for (int i = 0; i < n; ++i) {
 		int a;
 		cin >> a;
 		idx.push_back(a);
 	}
-	// Äõ¸®·Î µé¾î¿Ã¼öÀÖ´Â ÁÂÇ¥ÀÔ·Â.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½Ç¥ï¿½Ô·ï¿½.
 	for (int i = 0; i < q; ++i) {
 		int x, y;
 		cin >> x >> y;
 		idx.push_back(x);
 		idx.push_back(y);
 	}
-	// ½ÇÁ¦ Á¸ÀçÇÏ´Â ÁÂÇ¥µéÀ» Á¤·Ä ÈÄ Áßº¹Á¦°Å.
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½.
 	sort(idx.begin(), idx.end());
 	idx.erase(unique(idx.begin(), idx.end()), idx.end());
 
-	//ÀÌ¿ë¹æ¹ý
-	getIdx(30); // ÁÂÇ¥ 30¿¡ ÇØ´çÇÏ´Â ¾ÐÃàÁÂÇ¥ ¹ÝÈ¯
+	//ï¿½Ì¿ï¿½ï¿½ï¿½
+	getIdx(30); // ï¿½ï¿½Ç¥ 30ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ ï¿½ï¿½È¯
 }
 
 int main() {
@@ -66,73 +65,4 @@ int main() {
 	solve();
 
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <set>
-#include <vector>
-#include<map> 
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-
-#define INF 1000000000
-#define mod 1000000007
-
-using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<bool> vb;
-typedef vector<long long> vll;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pii;
-typedef vector<pii> vpii;
-
-// ÁÂÇ¥¾ÐÃà
-vi idx; // ÀÔ·ÂÀ¸·Î µé¾î¿Â °ª(ÁÂÇ¥)µéÀ» ¸ðµÎ ÀúÀåÇÏ¿© Á¤·ÄÇÑ ¹è¿­.
-// ÀÓÀÇÀÇ °ªÀÇ ¾ÐÃàµÈ(´ëÀÀµÇ´Â) ÁÂÇ¥ ¹ÝÈ¯
-int getIdx(int x) {
-	return lower_bound(idx.begin(), idx.end(),x)-idx.begin();
-}
-
-void solve() {
-	// ex) n°³ÀÇ 1Â÷¿ø ÁÂÇ¥°¡ µé¾î¿À°í 1Â÷¿øÁ÷¼±»ó¿¡¼­ x~y±¸°£¿¡ ÀÖ´Â Á¡ÀÇ °³¼ö¸¦ ¹¯´Â q°³ÀÇ Äõ¸®¸¦ ¹¯´Â ¹®Á¦¶ó¸é,
-	int n,q;
-	cin >> n>>q;
-	// Á÷¼±¿¡ Á¸ÀçÇÏ´Â Á¡ÀÇ ÁÂÇ¥ ÀÔ·Â.
-	for (int i = 0; i < n; ++i) {
-		int a;
-		cin >> a;
-		idx.push_back(a);
-	}
-	// Äõ¸®·Î µé¾î¿Ã¼öÀÖ´Â ÁÂÇ¥ÀÔ·Â.
-	for (int i = 0; i < q; ++i) {
-		int x, y;
-		cin >> x >> y;
-		idx.push_back(x);
-		idx.push_back(y);
-	}
-	// ½ÇÁ¦ Á¸ÀçÇÏ´Â ÁÂÇ¥µéÀ» Á¤·Ä ÈÄ Áßº¹Á¦°Å.
-	sort(idx.begin(), idx.end());
-	idx.erase(unique(idx.begin(), idx.end()), idx.end());
-
-	//ÀÌ¿ë¹æ¹ý
-	getIdx(30); // ÁÂÇ¥ 30¿¡ ÇØ´çÇÏ´Â ¾ÐÃàÁÂÇ¥ ¹ÝÈ¯
-}
-
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-
-
-	solve();
-
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }

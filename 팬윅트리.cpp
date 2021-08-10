@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -25,11 +24,11 @@ typedef pair<int, int> pii;
 typedef vector<pii> vpii;
 
 #define MAXN 10000
-//ÆÒÀ¨Æ®¸®
+//ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
 int n;
 int tree[MAXN+1];
 	
-// 0~pos¹ø ¿ø¼ÒÇÕ ¹ÝÈ¯
+// 0~posï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 int sum(int pos) {
 	pos++;
 	int ret = 0;
@@ -39,7 +38,7 @@ int sum(int pos) {
 	}
 	return ret;
 }
-// pos¹ø ¿ø¼ÒÀÇ °ª val¸¸Å­ Áõ°¡(update).
+// posï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ valï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½(update).
 void add(int pos, int val) {
 	pos++;
 	while (pos <= MAXN) {
@@ -59,66 +58,4 @@ int main() {
 	solve();
 
 	return 0;
-=======
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <set>
-#include <vector>
-#include<map> 
-#include <stack>
-#include <queue>
-#include <algorithm>
-#include <typeinfo>
-#include <iomanip>
-#include <cmath>
-
-#define INF 1000000000
-#define mod 1000000007
-
-using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<bool> vb;
-typedef vector<long long> vll;
-typedef vector<vector<int>> vvi;
-typedef pair<int, int> pii;
-typedef vector<pii> vpii;
-
-#define MAXN 10000
-//ÆÒÀ¨Æ®¸®
-int n;
-int tree[MAXN+1];
-	
-// 0~pos¹ø ¿ø¼ÒÇÕ ¹ÝÈ¯
-int sum(int pos) {
-	pos++;
-	int ret = 0;
-	while (pos > 0) {
-		ret += tree[pos];
-		pos &= pos - 1;
-	}
-	return ret;
-}
-// pos¹ø ¿ø¼ÒÀÇ °ª val¸¸Å­ Áõ°¡(update).
-void add(int pos, int val) {
-	pos++;
-	while (pos <= MAXN) {
-		tree[pos] += val;
-		pos += pos & (-pos);
-	}
-}
-void solve() {
-	
-}
-int main() {
-	cin.sync_with_stdio(false);
-	cin.tie(0);
-	cout.sync_with_stdio(false);
-	cout.tie(0);
-
-	solve();
-
-	return 0;
->>>>>>> bb6e75949a077d02582f893a347fffea74c6bcdf
 }
